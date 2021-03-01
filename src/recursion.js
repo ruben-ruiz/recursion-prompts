@@ -90,6 +90,39 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  var result = [];
+
+  if (x === undefined || y === undefined || y === x) {
+    return [];
+  }
+
+  if (y - 2 === x) {
+    result.push(x + 1);
+    return result;
+  } else if (y + 2 === x) {
+    result.push(x - 1);
+    return result;
+  }
+
+  if (x > y) {
+    var newX = x - 1;
+    if (newX !== y) {
+      result.push(newX);
+      return result.concat(range(newX, y));
+    } else {
+      return result;
+    }
+  }
+
+  if (x < y) {
+    var newX = x + 1;
+    if (newX !== y) {
+      result.push(newX);
+      return result.concat(range(newX, y));
+    } else {
+      return result;
+    }
+  }
 };
 
 // 7. Compute the exponent of a number.
