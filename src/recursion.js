@@ -93,35 +93,21 @@ var range = function(x, y) {
   var result = [];
 
   if (x === undefined || y === undefined || y === x) {
-    return [];
-  }
-
-  if (y - 2 === x) {
-    result.push(x + 1);
-    return result;
-  } else if (y + 2 === x) {
-    result.push(x - 1);
     return result;
   }
 
-  if (x > y) {
-    var newX = x - 1;
-    if (newX !== y) {
-      result.push(newX);
-      return result.concat(range(newX, y));
-    } else {
-      return result;
-    }
+  var newX = x > y ? (x - 1) : (x + 1);
+
+  if (y - 2 === x || y + 2 === x) {
+    result.push(newX);
+    return result;
   }
 
-  if (x < y) {
-    var newX = x + 1;
-    if (newX !== y) {
-      result.push(newX);
-      return result.concat(range(newX, y));
-    } else {
-      return result;
-    }
+  if (newX !== y) {
+    result.push(newX);
+    return result.concat(range(newX, y));
+  } else {
+    return result;
   }
 };
 
